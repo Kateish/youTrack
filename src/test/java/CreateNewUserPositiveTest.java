@@ -24,8 +24,7 @@ public class CreateNewUserPositiveTest {
     public Users usersPage;
     public Login loginPage;
     public WebDriver driver;
-    private String sTestCaseName;
-    private int iTestCaseRow;
+
     @FindBy(css = ".login-button")
     private static WebElement submitLoginButton;
 
@@ -52,31 +51,6 @@ public class CreateNewUserPositiveTest {
         driver.quit();
 
     }
-    // Create new user1 POI version
-//    @Ignore
-//    @Test
-//    public void createNewUser1(int iTestCaseRow) throws Exception {
-//        // Every exception thrown from any class or method, will be caught here and will be taken care off
-//        try {
-//            createNewUser1(iTestCaseRow);
-//            if (Base.bResult) {
-//                // If the value of boolean variable is True, then the test is complete pass
-//                ExcelUtils.setCellData("Pass", iTestCaseRow, Constant.Col_Result);
-//
-//            } else {
-//                // If the value of boolean variable is False, then your test is fail, and you like to report it accordingly
-//                // This is to throw exception in case of fail test, this exception will be caught by catch block below
-//                throw new Exception("Test Case Failed because of Verification");
-//            }
-//
-//        } catch (Exception e) {
-//            // this will mark test as Fail in the test result sheet
-//            ExcelUtils.setCellData("Fail", iTestCaseRow, Constant.Col_Result);
-//
-//            throw (e);
-//        }
-//
-//    }
 
     //test data to create users
     String[] user1RequiredFields = {"user1", "1", "1"};
@@ -87,6 +61,7 @@ public class CreateNewUserPositiveTest {
     String[] user11ForcedPwChange = {"user11", "1", "1", "new", "new"};
     String user1000chars = "m00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
     String[] userNonAlfaNum = {"&%-", "1", "1"};
+
     @Test
     public void createNewUserCase1() throws Exception {
 

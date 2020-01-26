@@ -1,173 +1,158 @@
 package com.jetbrains.youtrack.pageObjects;
 
-import com.jetbrains.youtrack.base.Base;
-
-import com.relevantcodes.extentreports.LogStatus;
+import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 
-import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
 
-public class Users extends Base {
+public class Users {
+    public static WebDriver driver;
 
+    public static String usersPageUrl = "http://localhost:8080/users";
+    public static String loginPageUrl = "http://localhost:8080/login";
+    public static String signUpPageUrl = "http://localhost:8080/registerUserForm";
+
+    public static void setUp(String url) {
+
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/executables/chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.get(url);
+        driver.manage().window().maximize();
+    }
     //locators tor search area
 
-    @FindBy(id = "id_l.U.queryText")
-    public WebElement find;
+    public WebElement find = driver.findElement(By.id("id_l.U.queryText"));
 
-    @FindBy(id = "id_l.U.onlineOnly")
-    public WebElement showOnlineUsersOnly;
+    public WebElement showOnlineUsersOnly = driver.findElement(By.id("id_l.U.onlineOnly"));
 
-    @FindBy(name = "l.U.groupFilter")
-    public WebElement group;
+    public WebElement group = driver.findElement(By.name("l.U.groupFilter"));
 
-    @FindBy(xpath = "//div[2]/ul/li[2]")
-    public WebElement newUsersGroup;
+    public WebElement newUsersGroup = driver.findElement(By.xpath("//div[2]/ul/li[2]"));
 
-    @FindBy(name = "l.U.roleFilter")
-    public WebElement role;
+    public WebElement role = driver.findElement(By.name("l.U.roleFilter"));
 
-    @FindBy(name = "l.U.projectFilter")
-    public WebElement project;
+    public WebElement project = driver.findElement(By.name("l.U.projectFilter"));
 
-    @FindBy(name = "l.U.permissionFilter")
-    public WebElement permission;
+    public WebElement permission = driver.findElement(By.name("l.U.permissionFilter"));
 
-    @FindBy(id = "id_l.U.searchButton")
-    public WebElement search;
+    public WebElement search = driver.findElement(By.id("id_l.U.searchButton"));
 
-    @FindBy(id = "id_l.U.resetButton")
-    private WebElement reset;
+    private WebElement reset = driver.findElement(By.id("id_l.U.resetButton"));
 
-    @FindBy(id = "id_l.U.createNewUser")
-    private WebElement createUser;
+    private WebElement createUser = driver.findElement(By.id("id_l.U.createNewUser"));
 
-    @FindBy(id = "id_l.U.usersList.usersList")
-    private WebElement userList;
+    private WebElement userList = driver.findElement(By.id("id_l.U.usersList.usersList"));
 
     public List<WebElement> users = driver.findElements(By.cssSelector("a[href*=\"id_l.U.usersList.UserLogin.editUser\"]"));
 
     //locators to merge users
 
-    @FindBy(id = "id_l.U.usersList.mergeUser_26_79")
-    private WebElement mergeUsers;
+    private WebElement mergeUsers = driver.findElement(By.id("id_l.U.usersList.mergeUser_26_79"));
 
-    @FindBy(id = "id_l.U.usersList.SelectUserDialog.selectUserCombo")
-    private WebElement usersSelectionDropDown;
+    private WebElement usersSelectionDropDown = driver.findElement(By.id("id_l.U.usersList.SelectUserDialog.selectUserCombo"));
 
-    @FindBy(xpath = "//div[@id='id_l.U.usersList.SelectUserDialog.selectUserDlg']/div[5]/ul/li[5]")
-    private WebElement selectUserFromDropDown;
+    private WebElement selectUserFromDropDown = driver.findElement(By.xpath("//div[@id='id_l.U.usersList.SelectUserDialog.selectUserDlg']/div[5]/ul/li[5]"));
 
-    @FindBy(id = "id_l.U.usersList.SelectUserDialog.selectUserOk")
-    private WebElement MergeUsersOkButton;
+    private WebElement MergeUsersOkButton = driver.findElement(By.id("id_l.U.usersList.SelectUserDialog.selectUserOk"));
 
     //locators to delete users
 
-    @FindBy(id = "id_l.U.usersList.deleteUser_26_99_3")
-    private  WebElement deleteUser;
+    private WebElement deleteUser = driver.findElement(By.id("id_l.U.usersList.deleteUser_26_99_3"));
 
     //locators to ban user
-    @FindBy(css = "id_l.U.usersList.banUser_26_97")
-    private WebElement banUser;
+    private WebElement banUser = driver.findElement(By.cssSelector("id_l.U.usersList.banUser_26_97"));
 
     //to unban
-    @FindBy(css = "id_l.U.usersList.banUser_26_98")
-    private WebElement unbanUser;
+    private WebElement unbanUser = driver.findElement(By.cssSelector("id_l.U.usersList.banUser_26_98"));
 
 
-    @FindBy(id = "id_l.U.usersList.banUser_26_98")
-    private WebElement secondUserToBeBanned;
+    private WebElement secondUserToBeBanned = driver.findElement(By.id("id_l.U.usersList.banUser_26_98"));
 
     //to log out
-    @FindBy(linkText = "logout")
-    private WebElement logOut;
+    private WebElement logOut = driver.findElement(By.linkText("logout"));
 
-    public Users(WebDriver driver) {
-        super(driver);
-    }
-//to reset password
-@FindBy(id = "id_l.U.ChangePasswordDialog.oldPassword")
-private WebElement oldPwInputField;
+    //to reset password
+    private WebElement oldPwInputField = driver.findElement(By.id("id_l.U.ChangePasswordDialog.oldPassword"));
 
-    @FindBy(id = "id_l.U.ChangePasswordDialog.newPassword1")
-    private WebElement newPwInputField;
+    private WebElement newPwInputField = driver.findElement(By.id("id_l.U.ChangePasswordDialog.newPassword1"));
 
-    @FindBy(id = "id_l.U.ChangePasswordDialog.newPassword2")
-    private WebElement confirmNewPwInputField;
+    private WebElement confirmNewPwInputField = driver.findElement(By.id("id_l.U.ChangePasswordDialog.newPassword2"));
 
-    @FindBy(id = "id_l.U.ChangePasswordDialog.passOk")
-    private WebElement buttonOk;
+
+    private WebElement buttonOk = driver.findElement(By.id("id_l.U.ChangePasswordDialog.passOk"));
 
     //to verify all the fields are correct
     //to verify the actions are ok
     //to verify the userlist
 //actions
-    @Step("search for online users")
+
     public void selectOnline() {
         driver.get(usersPageUrl);
-        click(showOnlineUsersOnly);
-        click(search);
+        showOnlineUsersOnly.click();
+        search.click();
     }
 
-    @Step("search by mask")
+
     public void searchByString(String searchValue) {
         driver.get(usersPageUrl);
-        type(find, searchValue);
-        click(search);
+        find.sendKeys(searchValue);
+        search.click();
     }
 
-    @Step("search by group")
     public void searchByGroupNewUsers() {
         driver.get(usersPageUrl);
-        click(group);
-        click(newUsersGroup);
-        click(search);
+        group.click();
+        newUsersGroup.click();
+        search.click();
     }
     //assert if all are clickable > all are present
 
-    @Step("verify all search filters")
+
     public void verifyAllFilters(WebElement element) {
         driver.get(usersPageUrl);
-        click(element);
+        element.click();
     }
 
     //actions on a userlist
 
     //actions to merge users
-    @Step("merge users")
+
     public void mergeUsers() {
         driver.get(usersPageUrl);
-        click(mergeUsers);
-        click(usersSelectionDropDown);
-        click(selectUserFromDropDown);
-        click(MergeUsersOkButton);
+        mergeUsers.click();
+        usersSelectionDropDown.click();
+        selectUserFromDropDown.click();
+        MergeUsersOkButton.click();
     }
 
     //action to ban user
-    @Step("ban user")
+
     public void ban() {
         driver.get(usersPageUrl);
-        click(banUser);
+        banUser.click();
     }
 
     //action to unban user
-    @Step("unban user")
+
     public void unban() {
         driver.get(usersPageUrl);
-        click(unbanUser);
+        unbanUser.click();
     }
 
     //action to delete
-    @Step("delete user")
+
     public void delete() {
         driver.get(usersPageUrl);
-        click(deleteUser);
+        deleteUser.click();
     }
-//handling alerts
-private boolean acceptNextAlert = true;
+
+    //handling alerts
+    private boolean acceptNextAlert = true;
+
     public boolean isAlertPresent() {
         try {
             driver.switchTo().alert();
@@ -176,7 +161,6 @@ private boolean acceptNextAlert = true;
             return false;
         }
     }
-
 
 
     public String closeAlertAndGetItsText() {
@@ -194,30 +178,26 @@ private boolean acceptNextAlert = true;
         }
     }
     //action to logout
-    @Step("log out")
-    public void logOut(){
+
+    public void logOut() {
         driver.get(usersPageUrl);
-        click(logOut);
+        logOut.click();
     }
 
     //change password when forced
-    @Step("log out")
-    public void resetPw(String old, String newPw, String conf){
+
+    public void resetPw(String old, String newPw, String conf) {
         driver.get(usersPageUrl);
-        type(oldPwInputField, old);
-        type(newPwInputField, newPw);
-        type(confirmNewPwInputField, conf);
-        click(buttonOk);
-    }
-    public static void click(WebElement element) {
-        element.click();
-        test.log(LogStatus.INFO, "Clicking on : " + element);
+        oldPwInputField.sendKeys(old);
+        newPwInputField.sendKeys(newPw);
+        confirmNewPwInputField.sendKeys(conf);
+        buttonOk.click();
     }
 
-    public static void type(WebElement element, String value) {
-        element.clear();
-        element.sendKeys(value);
-        test.log(LogStatus.INFO, "Typing in : " + element + " the value as " + value);
+    @AfterEach
+    public static void quitBrowser() {
+
+        driver.quit();
 
     }
 }

@@ -38,7 +38,7 @@ public class CreateNewUserPositiveTest {
 
         System.setProperty("webdriver.chrome.driver", "C:\\test\\src\\test\\resources\\executables\\chromedriver.exe");
         driver = new ChromeDriver();
-        driver.get(loginPageUrl);
+       // driver.get(loginPageUrl);
         loginPage.login("root", "root");
        // driver.get(usersPageUrl);
         driver.manage().window().maximize();
